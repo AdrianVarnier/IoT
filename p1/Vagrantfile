@@ -27,10 +27,11 @@ Vagrant.configure("2") do |config|
    
     server.vm.provision "shell", inline: <<-SHELL
         # Install K3s in controller mode
-        export INSTALL_K3S_EXEC="-node-ip #{SERVER_IP}  --bind-address=#{SERVER_IP} --advertise-address=#{SERVER_IP}"
+        export INSTALL_K3S_EXEC="--node-ip #{SERVER_IP}  --bind-address=#{SERVER_IP} --advertise-address=#{SERVER_IP}"
         curl -sfL https://get.k3s.io/ | sh -
         # Save token
-        sudo cp /var/lib/rancher/k3s/server/node-token #{TOKEN_FILE}
+        K3S_TOKEN=$(sudo cat /var/lib/rancher/k3s/server/node-token)
+        echo "$K3S_TOKEN" > /vagrant/k3s-token
     SHELL
     end
 
