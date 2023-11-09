@@ -6,7 +6,7 @@ WORKER_IP = "192.168.56.111"
 
 TOKEN_FILE = "/vagrant/k3s-token"
 
-OS = "hashicorp/bionic64"
+OS = "bento/ubuntu-22.04"
 MEMORY = "1024"
 CPU = "1"
 
