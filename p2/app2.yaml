@@ -9,13 +9,17 @@ spec:
   ports:
     - protocol: TCP
       port: 80
+      targetPort: 8080
 
 ---
 
+# Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app2
+  labels:
+    app: app2
 spec:
   replicas: 3
   selector:
@@ -28,7 +32,9 @@ spec:
     spec:
       containers:
         - name: app2
-          image: nginx:latest
+          image: paulbouwer/hello-kubernetes:1.10
+          env:
+            - name: MESSAGE
+              value: "Hello from app2."
           ports:
-            - containerPort: 80
-          imagePullPolicy: Always
+            - containerPort: 8080
