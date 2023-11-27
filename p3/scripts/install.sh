@@ -20,3 +20,7 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 # Install k3d
 curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
 
+# Install agrocd
+curl -LO "https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64"
+chmod +x "argocd-linux-amd64"
+sudo mv "argocd-linux-amd64" /usr/local/bin/argocd
