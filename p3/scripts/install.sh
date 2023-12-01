@@ -1,26 +1,33 @@
 #!/bin/bash
 
-# Update package lists and install essential packages
-sudo apt-get update
-sudo apt-get install -y git curl apt-transport-https ca-certificates software-properties-common gnupg-agent
+# Update and Upgrade
+# sudo apt-get -y update
+# sudo apt-get -y upgrade
 
 # Install Docker
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-sudo apt-get update
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-
-# Add current user to the docker group to run docker commands without sudo
-sudo usermod -aG docker $USER
+# sudo apt-get install ca-certificates curl gnupg
+# sudo install -m 0755 -d /etc/apt/keyrings
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+# sudo chmod a+r /etc/apt/keyrings/docker.gpg
+# echo \
+#   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+#   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+#   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+# sudo apt-get -y update
+# sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+# sudo groupadd docker
+# sudo usermod -aG docker $USER
+# newgrp docker
 
 # Install kubectl
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+# curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+# chmod +x ./kubectl
+# sudo mv ./kubectl /usr/local/bin/kubectl
 
 # Install k3d
-curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
+# curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 
-# Install agrocd
-curl -LO "https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64"
-chmod +x "argocd-linux-amd64"
-sudo mv "argocd-linux-amd64" /usr/local/bin/argocd
+# Install ArgoCD
+# curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+# sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
+# rm argocd-linux-amd64
