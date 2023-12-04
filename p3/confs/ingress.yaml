@@ -5,15 +5,16 @@ metadata:
   namespace: dev
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "traefik"
 spec:
   rules:
-    - host: localhost
+    - host:
       http:
         paths:
-          - pathType: Prefix
-            path: /
+          - path: /
+            pathType: Prefix
             backend:
               service:
-                name: wil-playground
+                name: will-playground-service
                 port:
                   number: 8888
