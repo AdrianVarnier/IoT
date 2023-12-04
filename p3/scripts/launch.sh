@@ -20,4 +20,5 @@ argocd app sync wil-playground
 argocd app set wil-playground --sync-policy automated
 argocd app set wil-playground --auto-prune
 argocd app set wil-playground --self-heal
+kubectl port-forward -n dev svc/argocd-server 8888:8888 > /dev/null 2>&1 &
 # kubectl -n dev apply -f ../confs/ingress.yaml
